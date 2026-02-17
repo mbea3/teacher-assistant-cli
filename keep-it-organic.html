@@ -85,20 +85,20 @@
             font-size: 1.2rem;
         }
 
-        ul {
+        .concept-list {
             margin: 0;
             padding-left: 0;
             list-style: none;
         }
 
-        li {
+        .concept-list li {
             margin-bottom: 10px;
             padding-left: 22px;
             position: relative;
             color: var(--text-muted);
         }
 
-        li::before {
+        .concept-list li::before {
             content: "";
             position: absolute;
             left: 0;
@@ -112,6 +112,133 @@
 
         strong {
             color: #ffffff;
+        }
+
+        .listening-section {
+            margin-top: 28px;
+            padding: 24px;
+            border-radius: 14px;
+            border: 1px solid rgba(151, 209, 161, 0.35);
+            background: rgba(12, 36, 24, 0.6);
+        }
+
+        .section-note {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .listening-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field-label {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .field-control {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba(183, 228, 199, 0.35);
+            background: rgba(8, 24, 15, 0.6);
+            color: var(--text-color);
+            padding: 10px 12px;
+            font-size: 0.95rem;
+        }
+
+        .field-control::placeholder {
+            color: rgba(205, 232, 208, 0.7);
+        }
+
+        .field-control:focus {
+            outline: 2px solid rgba(183, 228, 199, 0.35);
+            outline-offset: 1px;
+            border-color: rgba(183, 228, 199, 0.8);
+        }
+
+        .submit-button {
+            border: 1px solid rgba(215, 244, 221, 0.35);
+            border-radius: 999px;
+            padding: 11px 18px;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(45deg, #2f7d32, #6abf69);
+            cursor: pointer;
+            width: fit-content;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(10, 40, 20, 0.35);
+        }
+
+        .form-status {
+            margin-top: 10px;
+            font-size: 0.92rem;
+            color: var(--accent-color);
+            min-height: 20px;
+        }
+
+        .feed-heading {
+            margin: 12px 0 10px;
+            color: #d8f3dc;
+            font-size: 1.05rem;
+        }
+
+        .feed-empty {
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .feed-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .feed-item {
+            border-radius: 10px;
+            border: 1px solid rgba(183, 228, 199, 0.24);
+            background: rgba(7, 20, 13, 0.6);
+            padding: 10px 12px;
+        }
+
+        .feed-track {
+            margin: 0 0 4px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .feed-meta {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+        }
+
+        .feed-note {
+            margin: 6px 0 0;
+            color: #d8f3dc;
+            font-size: 0.9rem;
         }
 
         .back-link {
@@ -131,6 +258,12 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 22px rgba(10, 40, 20, 0.35);
         }
+
+        @media (max-width: 700px) {
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -143,13 +276,163 @@
             performance signals that creators can trust.
         </p>
         <h2>Core Concepts</h2>
-        <ul>
+        <ul class="concept-list">
             <li><strong>Verified Growth Signals:</strong> Prioritize real-user actions over inflated bot traffic.</li>
             <li><strong>Community Input Loops:</strong> Let listeners vote, review, and surface what is actually resonating.</li>
             <li><strong>Transparent Analytics:</strong> Share clear stream quality indicators artists can act on quickly.</li>
             <li><strong>Healthy Discovery Paths:</strong> Build campaigns around retention, saves, and repeat engagement.</li>
         </ul>
+        <section class="listening-section" aria-labelledby="listening-heading">
+            <h2 id="listening-heading">Share What You're Listening To</h2>
+            <p class="section-note">
+                Add your current rotation to help shape an authentic community-powered music pulse.
+            </p>
+            <form id="listeningForm" class="listening-form">
+                <div class="field-grid">
+                    <div class="field">
+                        <label class="field-label" for="trackTitle">Song Title</label>
+                        <input class="field-control" id="trackTitle" name="trackTitle" type="text" required placeholder="Ex: Golden by Jill Scott">
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="artistName">Artist</label>
+                        <input class="field-control" id="artistName" name="artistName" type="text" required placeholder="Ex: Jill Scott">
+                    </div>
+                </div>
+                <div class="field-grid">
+                    <div class="field">
+                        <label class="field-label" for="listenerName">Your Name (optional)</label>
+                        <input class="field-control" id="listenerName" name="listenerName" type="text" placeholder="Ex: Organic Listener 9">
+                    </div>
+                    <div class="field">
+                        <label class="field-label" for="musicMood">Mood/Genre (optional)</label>
+                        <input class="field-control" id="musicMood" name="musicMood" type="text" placeholder="Ex: Neo-soul, Late Night Drive">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="trackNote">Why this track? (optional)</label>
+                    <textarea class="field-control" id="trackNote" name="trackNote" rows="3" placeholder="Share why this one is in your current rotation..."></textarea>
+                </div>
+                <button class="submit-button" type="submit">Submit Track</button>
+            </form>
+            <p id="formStatus" class="form-status" aria-live="polite"></p>
+            <h3 class="feed-heading">Community Listening Feed</h3>
+            <p id="feedEmpty" class="feed-empty">No submissions yet. Be the first to share a track.</p>
+            <ul id="communityFeed" class="feed-list" aria-live="polite"></ul>
+        </section>
         <a class="back-link" href="index.html">Back to Newsletter</a>
     </main>
+    <script>
+        (function () {
+            const form = document.getElementById('listeningForm');
+            const feed = document.getElementById('communityFeed');
+            const emptyState = document.getElementById('feedEmpty');
+            const status = document.getElementById('formStatus');
+            const storageKey = 'tdb-keep-it-organic-listening-feed';
+
+            if (!form || !feed || !emptyState || !status) {
+                return;
+            }
+
+            function loadEntries() {
+                try {
+                    const data = localStorage.getItem(storageKey);
+                    if (!data) {
+                        return [];
+                    }
+                    const parsed = JSON.parse(data);
+                    return Array.isArray(parsed) ? parsed : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function saveEntries(entries) {
+                localStorage.setItem(storageKey, JSON.stringify(entries));
+            }
+
+            function formatDate(iso) {
+                const date = new Date(iso);
+                return date.toLocaleString([], {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit'
+                });
+            }
+
+            function render(entries) {
+                feed.innerHTML = '';
+
+                if (!entries.length) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+
+                emptyState.style.display = 'none';
+
+                entries.forEach((entry) => {
+                    const item = document.createElement('li');
+                    item.className = 'feed-item';
+
+                    const track = document.createElement('p');
+                    track.className = 'feed-track';
+                    track.textContent = entry.track + ' - ' + entry.artist;
+
+                    const meta = document.createElement('p');
+                    meta.className = 'feed-meta';
+                    const moodText = entry.mood ? ' • ' + entry.mood : '';
+                    const nameText = entry.name ? entry.name : 'Anonymous listener';
+                    meta.textContent = nameText + ' • ' + formatDate(entry.submittedAt) + moodText;
+
+                    item.appendChild(track);
+                    item.appendChild(meta);
+
+                    if (entry.note) {
+                        const note = document.createElement('p');
+                        note.className = 'feed-note';
+                        note.textContent = '"' + entry.note + '"';
+                        item.appendChild(note);
+                    }
+
+                    feed.appendChild(item);
+                });
+            }
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const track = document.getElementById('trackTitle').value.trim();
+                const artist = document.getElementById('artistName').value.trim();
+                const name = document.getElementById('listenerName').value.trim();
+                const mood = document.getElementById('musicMood').value.trim();
+                const note = document.getElementById('trackNote').value.trim();
+
+                if (!track || !artist) {
+                    status.textContent = 'Please add both song title and artist.';
+                    return;
+                }
+
+                const nextEntry = {
+                    track: track,
+                    artist: artist,
+                    name: name,
+                    mood: mood,
+                    note: note,
+                    submittedAt: new Date().toISOString()
+                };
+
+                const currentEntries = loadEntries();
+                const updatedEntries = [nextEntry].concat(currentEntries).slice(0, 30);
+
+                saveEntries(updatedEntries);
+                render(updatedEntries);
+
+                form.reset();
+                status.textContent = 'Thanks for sharing. Your track was added to the community feed.';
+            });
+
+            render(loadEntries());
+        })();
+    </script>
 </body>
 </html>
