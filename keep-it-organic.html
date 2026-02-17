@@ -120,6 +120,45 @@
             color: #ffffff;
         }
 
+        .champion-section {
+            margin-top: 26px;
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(151, 209, 161, 0.35);
+            background: rgba(11, 32, 21, 0.62);
+        }
+
+        .champion-intro {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .champion-list {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .champion-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--text-muted);
+        }
+
+        .champion-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #95d5b2, #6abf69);
+            box-shadow: 0 0 0 2px rgba(183, 228, 199, 0.15);
+        }
+
         .listening-section {
             margin-top: 28px;
             padding: 24px;
@@ -290,6 +329,19 @@
             <li><strong>Trust-Centered Signals:</strong> Clarity and credibility stay at the center of every phase.</li>
             <li><strong>Excitement by Design:</strong> New activations, drops, and moments built to keep momentum alive.</li>
         </ul>
+        <section class="champion-section" aria-labelledby="champion-heading">
+            <h2 id="champion-heading">Restoring Love for DJs, Creators, Ambassadors, and Hometown Heroes</h2>
+            <p class="champion-intro">
+                Keep It Organic also celebrates the people who move culture before the spotlight arrives.
+                These community champions help artists break through, build confidence, and turn early momentum into real careers.
+            </p>
+            <ul class="champion-list">
+                <li><strong>DJs:</strong> They set the pulse and introduce new artists to real audiences first.</li>
+                <li><strong>Organic Creators:</strong> They create trusted storytelling that drives authentic discovery.</li>
+                <li><strong>Ambassadors:</strong> They carry the message across scenes, platforms, and communities.</li>
+                <li><strong>Hometown Heroes:</strong> They provide early support systems that help artists launch and grow with purpose.</li>
+            </ul>
+        </section>
         <section class="listening-section" aria-labelledby="listening-heading">
             <h2 id="listening-heading">Share What You're Listening To</h2>
             <p class="section-note">
