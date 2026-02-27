@@ -129,6 +129,33 @@
             font-size: 0.93rem;
         }
 
+        .sustainability-list {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .sustainability-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--muted);
+        }
+
+        .sustainability-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-teal), #6ee7b7);
+            box-shadow: 0 0 0 2px rgba(182, 247, 255, 0.15);
+        }
+
         .highlight {
             margin-top: 16px;
             border-radius: 12px;
@@ -198,6 +225,18 @@
                 <p>Practical health tips that support stronger habits, confidence, and long-term wellness.</p>
             </article>
         </div>
+
+        <h2>Fit Up + Sustainability</h2>
+        <p>
+            Fit Up also aligns with a healthier planet by encouraging family habits
+            that support both personal wellness and community sustainability.
+        </p>
+        <ul class="sustainability-list">
+            <li>Low-impact movement routines that need little to no equipment.</li>
+            <li>Simple cooking ideas that favor seasonal ingredients and less waste.</li>
+            <li>Reusable hydration and lunch habits for everyday family life.</li>
+            <li>Outdoor family activity moments that reconnect wellness with nature.</li>
+        </ul>
 
         <div class="highlight">
             Fit Up celebrates the power of family momentum: small healthy actions, done consistently,
