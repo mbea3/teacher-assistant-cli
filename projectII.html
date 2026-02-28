@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mission II Complete - Tour de Buzz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .header {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            text-align: center;
+            padding: 36px 20px;
+        }
+
+        .header h1 {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            margin-bottom: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .header p {
+            max-width: 860px;
+            margin: 0 auto 8px auto;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .header .highlight {
+            color: #dc143c;
+            font-weight: 700;
+        }
+
+        .panel {
+            max-width: 1100px;
+            margin: 0 auto 22px auto;
+            background: rgba(17, 17, 17, 0.95);
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(220, 20, 60, 0.2), 0 16px 48px rgba(0, 0, 0, 0.6);
+            padding: 24px;
+        }
+
+        .panel h2 {
+            color: #dc143c;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .panel p {
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.7;
+        }
+
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(220, 20, 60, 0.35);
+            box-shadow: 0 8px 28px rgba(220, 20, 60, 0.25);
+            margin: 16px 0 10px 0;
+            background: #000;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .small-note {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(220, 20, 60, 0.25);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 1.04rem;
+        }
+
+        .quote {
+            max-width: 820px;
+            margin: 34px auto 24px auto;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            text-align: center;
+        }
+
+        #mars-scene {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            margin-top: 14px;
+        }
+
+        #mars-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .fact-display {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 82%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.92);
+            background: rgba(0, 0, 0, 0.68);
+            border: 1px solid rgba(220, 20, 60, 0.25);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .fact-display.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 6px;
+            }
+
+            .panel {
+                padding: 16px;
+                border-radius: 14px;
+            }
+
+            .header {
+                padding: 24px 12px;
+            }
+
+            #mars-scene {
+                height: 340px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Thank You</h1>
+        <p class="highlight">We appreciate you choosing our platform for your immersive live radio experience.</p>
+        <p>Note: This is a conceptual project inspired by artist-first creativity to shape the Tour de Buzz app vision.</p>
+    </header>
+
+    <section class="panel">
+        <h2>Live DJ YouTube Experience</h2>
+        <p>
+            Local video file references have been replaced with a live YouTube stream experience.
+            The player below is embedded directly from YouTube for easy viewing on desktop and mobile.
+        </p>
+        <div class="video-frame">
+            <iframe
+                src="https://www.youtube.com/embed/jfKfPfyJRdk?rel=0&modestbranding=1"
+                title="Live DJ YouTube Stream"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+        </div>
+        <p class="small-note">Live stream source can be updated anytime by swapping the YouTube embed URL.</p>
+    </section>
+
+    <blockquote class="quote">
+        My model for business is The Beatles. They were four guys who kept each other kind of negative tendencies in check.
+        They balanced each other and the total was greater than the sum of the parts. That is how I see business:
+        great things in business are never done by one person, they are done by a team of people.
+        <br>
+        - Steve Jobs
+    </blockquote>
+
+    <section class="panel">
+        <h2>About Monique Beacham</h2>
+        <p>
+            <strong>Monique Beacham</strong> is the CEO of Learn More Space and brings a strong background in user research and design.
+            Her focus is building creative technology experiences that blend innovation, culture, and impact.
+        </p>
+        <div class="grid">
+            <div class="card">
+                <h3>Vision</h3>
+                <p>Build immersive experiences that move from content consumption to active participation and discovery.</p>
+            </div>
+            <div class="card">
+                <h3>Approach</h3>
+                <p>Translate user insight into product direction while balancing creativity, quality, and accessibility.</p>
+            </div>
+            <div class="card">
+                <h3>Leadership</h3>
+                <p>Lead projects that connect AI, sustainability, and storytelling in practical, audience-focused ways.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Project</h2>
+        <p><strong>Project Owner:</strong> Monique Beacham</p>
+        <p>
+            We delivered an immersive live radio platform and a 360-style video concept that showcases innovative approaches
+            for DJ experiences, artist-first storytelling, and interactive audience engagement.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Project Scope and Status</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>In Scope</h3>
+                <p>
+                    Work featured on this website, including the Tour de Buzz concept experience and related project storytelling.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Out of Scope</h3>
+                <p>Any materials, executions, or distribution outside this website and selected updates potentially shared on Monique Beacham's social media channels.</p>
+            </div>
+            <div class="card">
+                <h3>Project Status</h3>
+                <p><strong style="color: rgba(0, 255, 136, 0.95);">Completed</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Platform Features</h2>
+        <div class="grid">
+            <div class="card"><h3>Artist Spotlight</h3><p>Curated profiles and interactive showcases for featured creators.</p></div>
+            <div class="card"><h3>Dance Challenges</h3><p>Gamified dance prompts with scoring and shareable highlights.</p></div>
+            <div class="card"><h3>Tour de Buzz</h3><p>A 3D world where users travel between venues and discover shared experiences.</p></div>
+            <div class="card"><h3>DJ Radio</h3><p>Live broadcast listening and low-latency stream support.</p></div>
+            <div class="card"><h3>Ocean Game</h3><p>Interactive mini-experience that demonstrates real-time 3D interactions.</p></div>
+            <div class="card"><h3>Newsletter</h3><p>In-app sign-up for product updates and releases.</p></div>
+            <div class="card"><h3>Multi-user and Avatars</h3><p>Real-time rooms with synchronized experiences across the platform.</p></div>
+            <div class="card"><h3>Immersive Player</h3><p>Interactive viewing experiences with intuitive camera controls.</p></div>
+            <div class="card"><h3>Quality and Accessibility</h3><p>Performance tuning and accessibility checks for a polished experience.</p></div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Why This Is Important</h2>
+        <p>
+            This work demonstrates how live radio, immersive media, and interactive discovery can coexist on the open web
+            as one artist-first, audience-centered product experience.
+        </p>
+        <div class="grid">
+            <div class="card"><h3>What We Proved</h3><p>Immersive playback can be delivered in browser-based experiences across major devices.</p></div>
+            <div class="card"><h3>Scalability</h3><p>Core components can be reused across multiple pages and future integrations.</p></div>
+            <div class="card"><h3>Momentum</h3><p>The platform creates a launch point for future sustainability and culture-forward initiatives.</p></div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Mars Sustainability Scene</h2>
+        <p style="text-align:center;">Hover over the scene to surface sustainability fact highlights.</p>
+        <div id="mars-scene">
+            <canvas id="mars-canvas"></canvas>
+            <div class="fact-display"></div>
+        </div>
+    </section>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from "three";
+        import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+        const sustainabilityFacts = [
+            "A reusable bottle can replace around 156 single-use plastic bottles each year.",
+            "LED bulbs use about 75 percent less energy than traditional incandescent bulbs.",
+            "Composting can reduce household waste by up to 30 percent.",
+            "One recycled aluminum can saves enough energy to power a TV for hours.",
+            "The ocean absorbs roughly 30 percent of emitted carbon dioxide.",
+            "A single tree can absorb up to 48 pounds of carbon dioxide per year.",
+            "Solar panels often last around 25 to 30 years with low maintenance.",
+            "Recycling one ton of paper can save thousands of gallons of water."
+        ];
+
+        const canvas = document.getElementById("mars-canvas");
+        const factDisplay = document.querySelector(".fact-display");
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 2000);
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.4;
+        camera.position.set(0, 12, 38);
+
+        const marsGeometry = new THREE.SphereGeometry(14, 96, 96);
+        const marsMaterial = new THREE.MeshStandardMaterial({
+            color: 0xff3300,
+            roughness: 0.75,
+            metalness: 0.08,
+            emissive: 0x220000,
+            emissiveIntensity: 0.2
+        });
+        const mars = new THREE.Mesh(marsGeometry, marsMaterial);
+        scene.add(mars);
+
+        const points = [];
+        for (let i = 0; i < 6000; i += 1) {
+            points.push((Math.random() - 0.5) * 1200);
+            points.push((Math.random() - 0.5) * 1200);
+            points.push((Math.random() - 0.5) * 1200);
+        }
+        const starGeometry = new THREE.BufferGeometry();
+        starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(points, 3));
+        const stars = new THREE.Points(
+            starGeometry,
+            new THREE.PointsMaterial({ color: 0xffffff, size: 0.7, sizeAttenuation: true })
+        );
+        scene.add(stars);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        keyLight.position.set(60, 40, 80);
+        scene.add(keyLight);
+        const rimLight = new THREE.DirectionalLight(0xff3300, 0.45);
+        rimLight.position.set(-70, 25, -60);
+        scene.add(rimLight);
+
+        const raycaster = new THREE.Raycaster();
+        const pointer = new THREE.Vector2();
+        let factIndex = 0;
+        let factTimer = null;
+
+        function showFact() {
+            factDisplay.textContent = sustainabilityFacts[factIndex];
+            factDisplay.classList.add("visible");
+            factIndex = (factIndex + 1) % sustainabilityFacts.length;
+
+            if (factTimer) {
+                clearTimeout(factTimer);
+            }
+            factTimer = setTimeout(() => factDisplay.classList.remove("visible"), 4200);
+        }
+
+        function onMouseMove(event) {
+            const rect = canvas.getBoundingClientRect();
+            pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            raycaster.setFromCamera(pointer, camera);
+            const hits = raycaster.intersectObject(mars);
+            if (hits.length > 0) {
+                showFact();
+            }
+        }
+
+        canvas.addEventListener("mousemove", onMouseMove);
+
+        function resize() {
+            const rect = canvas.getBoundingClientRect();
+            const width = Math.max(1, Math.floor(rect.width));
+            const height = Math.max(1, Math.floor(rect.height));
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height, false);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            mars.rotation.y += 0.0015;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+        showFact();
+        setInterval(showFact, 10000);
+        animate();
+    </script>
+</body>
+</html>
