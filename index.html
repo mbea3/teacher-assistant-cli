@@ -26,25 +26,25 @@
     <style>
         /* CSS Variables */
         :root {
-            --primary-color: #FE5B24;
-            --secondary-color: #7000f4;
-            --dark-color: #121212;
-            --text-color: #C4B5FD;
-            --text-color-light: rgba(196, 181, 253, 0.8);
-            --light-purple: #C4B5FD;
-            --gold-color: #EFBF04;
-            --background-gradient: linear-gradient(45deg, #8B4513, #1E3A8A);
-            --transparent-black: rgba(18, 18, 18, 0.75);
+            --primary-color: #38BDF8;
+            --secondary-color: #0284C7;
+            --dark-color: #071A2B;
+            --text-color: #E0F2FE;
+            --text-color-light: rgba(224, 242, 254, 0.82);
+            --light-purple: #BAE6FD;
+            --gold-color: #7DD3FC;
+            --background-gradient: linear-gradient(145deg, #0A2238, #0D3B66 55%, #1D9BF0);
+            --transparent-black: rgba(7, 26, 43, 0.76);
             --transparent-white: rgba(255, 255, 255, 0.1);
-            --accent-color: #00ffcc;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --card-hover-border: rgba(254, 91, 36, 0.5);
+            --accent-color: #7DD3FC;
+            --card-bg: rgba(12, 52, 83, 0.45);
+            --card-border: rgba(125, 211, 252, 0.26);
+            --card-hover-border: rgba(56, 189, 248, 0.65);
             --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
             --card-backdrop-blur: 12px;
             --section-spacing: 100vh;
-            --orange-gradient: linear-gradient(45deg, var(--primary-color), #ff8b5f);
-            --orange-gradient-hover: linear-gradient(45deg, #ff8b5f, var(--primary-color));
+            --orange-gradient: linear-gradient(45deg, #0EA5E9, var(--primary-color));
+            --orange-gradient-hover: linear-gradient(45deg, var(--primary-color), #0EA5E9);
             --border-radius: 10px;
         }
 
@@ -365,7 +365,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(254, 91, 36, 0.3);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.35);
         }
 
         /* Three.js Canvas */
@@ -759,19 +759,19 @@
 
         /* Section Background Gradients */
         #services {
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(112, 0, 244, 0.2));
+            background: linear-gradient(45deg, rgba(5, 16, 30, 0.72), rgba(56, 189, 248, 0.2));
         }
 
         #portfolio {
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(254, 91, 36, 0.2));
+            background: linear-gradient(45deg, rgba(5, 16, 30, 0.72), rgba(14, 165, 233, 0.24));
         }
 
         #opportunities {
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 255, 204, 0.1));
+            background: linear-gradient(45deg, rgba(5, 16, 30, 0.72), rgba(125, 211, 252, 0.16));
         }
 
         #contact {
-            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(112, 0, 244, 0.1));
+            background: linear-gradient(45deg, rgba(5, 16, 30, 0.72), rgba(59, 130, 246, 0.16));
         }
 
         /* Press Release Container */
@@ -890,7 +890,7 @@
         }
 
         .press-release-card:hover .press-release-link-text {
-            color: #E9D5FF;
+            color: #E0F2FE;
             transform: translateX(3px);
         }
 
@@ -1413,7 +1413,7 @@
             // Add central geometry
             const geometry = new THREE.IcosahedronGeometry(5, 2);
             const material = new THREE.MeshBasicMaterial({
-                color: 0xFE5B24,
+                color: 0x38BDF8,
                 wireframe: true,
             });
             const centerShape = new THREE.Mesh(geometry, material);
