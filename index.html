@@ -801,9 +801,7 @@
             contain: none !important;
         }
         
-        .press-releases-container a.press-release-card:last-child,
-        .press-releases-container a[href="the-feast-up.html"],
-        .press-releases-container a[data-feast-up="true"] {
+        .press-releases-container a.press-release-card:last-child {
             content-visibility: visible !important;
             will-change: auto;
             display: block !important;
@@ -811,12 +809,6 @@
             visibility: visible !important;
             position: relative !important;
             z-index: 10 !important;
-        }
-        
-        /* Prevent any transitions that might hide it */
-        .press-releases-container a[href="the-feast-up.html"] {
-            transition: none !important;
-            animation: none !important;
         }
         
         /* Force immediate rendering - prevent lazy loading */
@@ -1062,28 +1054,6 @@
                             </p>
                             <span class="press-release-link-text">Learn More →</span>
                         </a>
-                        <!-- Fit Up Snippet -->
-                        <a href="fit-up.html" class="press-release-card featured-update" style="opacity: 1 !important; visibility: visible !important; display: block !important; grid-column: 1 / -1; grid-row: 2;">
-                            <div class="press-release-date">
-                                Posted: Feb 17, 2026 05:00 CST
-                            </div>
-                            <h3 class="press-release-title">Fit Up: Family Wellness for Kids + Parents</h3>
-                            <p class="press-release-excerpt">
-                                A family-focused wellness project blending movement, cooking inspiration, healthy habits, and sustainability-friendly routines for kids and parents.
-                            </p>
-                            <span class="press-release-link-text">Explore Fit Up →</span>
-                        </a>
-                        <!-- The Feast Up Snippet -->
-                        <a href="the-feast-up.html" class="press-release-card" style="opacity: 1 !important; visibility: visible !important; display: block !important; grid-column: 1; grid-row: 3;">
-                            <div class="press-release-date">
-                                Posted: Nov 19, 2025 10:00 CST
-                            </div>
-                            <h3 class="press-release-title">The Feast Up</h3>
-                            <p class="press-release-excerpt">
-                                Join immersive cooking experiences rooted in creative storytelling. Learn recipes, cook alongside featured creators, and connect with food lovers in virtual kitchens.
-                            </p>
-                            <span class="press-release-link-text">Start Cooking →</span>
-                        </a>
                         <!-- Project II Overview Snippet -->
                         <!-- Game Release Snippet -->
                         <a href="projectII.html" class="press-release-card">
@@ -1220,7 +1190,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Force immediate rendering of all press release cards
             const cards = document.querySelectorAll('.press-release-card');
-            const feastUpCard = document.querySelector('a[href="the-feast-up.html"]');
             
             // Function to force card visibility
             function forceCardVisible(card) {
@@ -1249,46 +1218,6 @@
                 container.style.contentVisibility = 'visible';
                 container.style.contain = 'none';
                 void container.offsetHeight; // Force reflow
-            }
-            
-            // Special handling for The Feast Up card
-            if (feastUpCard) {
-                forceCardVisible(feastUpCard);
-                feastUpCard.setAttribute('data-feast-up', 'true');
-                
-                // Watch for any changes that might hide it
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.type === 'attributes' || mutation.type === 'childList') {
-                            forceCardVisible(feastUpCard);
-                        }
-                    });
-                });
-                
-                observer.observe(feastUpCard, {
-                    attributes: true,
-                    attributeFilter: ['style', 'class'],
-                    childList: true,
-                    subtree: true
-                });
-                
-                // Also watch the parent container
-                if (feastUpCard.parentElement) {
-                    observer.observe(feastUpCard.parentElement, {
-                        childList: true,
-                        subtree: true
-                    });
-                }
-                
-                // Continuously check and force visibility
-                setInterval(() => {
-                    if (feastUpCard) {
-                        const computed = window.getComputedStyle(feastUpCard);
-                        if (computed.display === 'none' || computed.visibility === 'hidden' || computed.opacity === '0') {
-                            forceCardVisible(feastUpCard);
-                        }
-                    }
-                }, 100);
             }
             
             // Initialize Three.js visualization (non-blocking)
