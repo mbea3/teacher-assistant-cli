@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<!--
+============================================
+GOLDRUSH FRONTEND - DEPLOYMENT READY VERSION
+============================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldRush AI - Powered by Quanimm AI</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+        }
+
+        .modern-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modern-card:hover {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .modern-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .modern-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .modern-btn:active {
+            transform: translateY(0);
+        }
+
+        .modern-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.875rem 1.25rem;
+            transition: all 0.2s ease;
+            font-size: 0.9375rem;
+        }
+
+        .modern-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gradient-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        .gradient-modern-blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .gradient-modern-green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .shadow-modern {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .shadow-modern-lg {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .rounded-modern {
+            border-radius: 1rem;
+        }
+
+        .rounded-modern-lg {
+            border-radius: 1.5rem;
+        }
+
+        .trophy-emoji {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+
+        .ai-assistant-icon {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ai-assistant-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .ai-assistant-icon::before {
+            content: '⚡';
+            font-size: 1.5em;
+            color: white;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+        }
+
+        .ai-assistant-icon-small::before {
+            font-size: 1em;
+        }
+
+        .ai-assistant-icon-large::before {
+            font-size: 2em;
+        }
+
+        .nav-modern {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-modern {
+            position: relative;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-modern:hover {
+            color: #667eea;
+        }
+
+        .tab-modern.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .press-card-modern {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 16px 48px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .press-card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 24px 64px rgba(0, 0, 0, 0.16);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .badge-modern {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .modern-card {
+                border-radius: 1rem;
+            }
+
+            .press-card-modern {
+                border-radius: 1rem;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .modern-card {
+                background: rgba(30, 30, 30, 0.95);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen" style="background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);">
+    <div id="app" class="min-h-screen flex flex-col">
+        <div class="nav-modern py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex flex-col">
+                        <h1 class="text-2xl font-bold text-gray-900">Quanimm AI</h1>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div v-if="userProfile.authenticated" class="flex items-center space-x-3">
+                            <img v-if="userProfile.avatar_url" :src="userProfile.avatar_url" :alt="userProfile.name"
+                                 class="w-8 h-8 rounded-full border-2 border-gray-200">
+                            <div class="text-right">
+                                <div class="text-sm font-medium text-gray-900">{{ userProfile.name }}</div>
+                                <div class="text-xs text-gray-500">{{ userProfile.username }}</div>
+                            </div>
+                            <button @click="signOut"
+                                    class="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                                Sign out
+                            </button>
+                        </div>
+
+                        <div v-else class="flex items-center space-x-3">
+                            <button @click="githubLogin"
+                                    class="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>Sign in with GitHub</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center">
+                    <nav class="flex space-x-8">
+                        <button @click="activeTab = 'pressreleases'"
+                                :class="activeTab === 'pressreleases' ? 'tab-modern active text-indigo-600' : 'tab-modern text-gray-500'"
+                                class="py-2 px-1 border-b-2 font-medium text-sm">
+                            📄 Press Releases
+                        </button>
+                        <button @click="activeTab = 'education'"
+                                :class="activeTab === 'education' ? 'tab-modern active text-indigo-600' : 'tab-modern text-gray-500'"
+                                class="py-2 px-1 border-b-2 font-medium text-sm">
+                            📚 Education
+                        </button>
+                        <button @click="activeTab = 'chat'"
+                                :class="activeTab === 'chat' ? 'tab-modern active text-indigo-600' : 'tab-modern text-gray-500'"
+                                class="py-2 px-1 border-b-2 font-medium text-sm">
+                            🤖 AI Assistant
+                        </button>
+                        <button @click="activeTab = 'press'"
+                                :class="activeTab === 'press' ? 'tab-modern active text-indigo-600' : 'tab-modern text-gray-500'"
+                                class="py-2 px-1 border-b-2 font-medium text-sm">
+                            📰 Newsletter
+                        </button>
+                        <button @click="sidebarOpen = !sidebarOpen"
+                                :class="sidebarOpen ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                                class="py-2 px-1 border-b-2 font-medium text-sm">
+                            📋 More
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <main class="flex-1 flex flex-col w-full max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div v-if="sidebarOpen" class="fixed inset-y-0 right-0 w-80 bg-white shadow-xl border-l border-gray-200 z-50 overflow-y-auto">
+                <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900">📋 More Options</h3>
+                    <button @click="sidebarOpen = false" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-4">
+                    <div class="space-y-4">
+                        <button @click="activeTab = 'press'; sidebarOpen = false"
+                                :class="activeTab === 'press' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">📰</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">Newsletter</h4>
+                                <p class="text-sm opacity-75">AI Updates & Insights</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'pressreleases'; sidebarOpen = false"
+                                :class="activeTab === 'pressreleases' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">📄</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">Press Releases</h4>
+                                <p class="text-sm opacity-75">Official Announcements</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'about'; sidebarOpen = false"
+                                :class="activeTab === 'about' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">ℹ️</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">About</h4>
+                                <p class="text-sm opacity-75">Platform Overview</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'chat'; sidebarOpen = false"
+                                :class="activeTab === 'chat' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">🤖</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">AI Assistant</h4>
+                                <p class="text-sm opacity-75">Chat with AI</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'workforcedisruption'; sidebarOpen = false"
+                                :class="activeTab === 'workforcedisruption' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">🔄</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">Workforce Disruption</h4>
+                                <p class="text-sm opacity-75">Future of Work</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'membership'; sidebarOpen = false"
+                                :class="activeTab === 'membership' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">💎</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">Plans</h4>
+                                <p class="text-sm opacity-75">Membership Options</p>
+                            </div>
+                        </button>
+
+                        <button @click="activeTab = 'mission'; sidebarOpen = false"
+                                :class="activeTab === 'mission' ? 'bg-gray-100 border-gray-300 text-gray-900' : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'"
+                                class="w-full flex items-center p-4 rounded-lg border transition-colors">
+                            <span class="text-2xl mr-3">⭐</span>
+                            <div class="text-left">
+                                <h4 class="font-semibold">Mission</h4>
+                                <p class="text-sm opacity-75">Our Vision</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="activeTab === 'home'">
+                <div class="mb-12">
+                    <div class="text-center mb-8">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-4">🚀 Your Platform to the AI World</h1>
+                        <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                            Your platform to the AI world, centered at the crossroads of human innovation and artificial intelligence.
+                            Stay informed, advance your skills, and embrace the disruption that's reshaping our future.
+                        </p>
+                    </div>
+
+                    <div class="modern-card rounded-modern-lg p-8 mb-8 fade-in">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <span class="text-2xl mr-3">🔗</span>
+                            Quick Access
+                        </h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+                            <button @click="activeTab = 'chat'" class="flex items-center p-4 bg-white rounded-lg border border-blue-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">🤖</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">AI Assistant</h3>
+                                    <p class="text-sm text-gray-600">Chat with AI</p>
+                                </div>
+                            </button>
+
+                            <button @click="activeTab = 'creativepro'" class="flex items-center p-4 bg-white rounded-lg border border-purple-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">🏆</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Creative Pro</h3>
+                                    <p class="text-sm text-gray-600">Enterprise Package</p>
+                                </div>
+                            </button>
+
+                            <button @click="requireAuthForTab('developertools')"
+                                    :class="!userProfile.authenticated ? 'opacity-50 cursor-not-allowed' : ''"
+                                    class="flex items-center p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">🛠️</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Developer Tools</h3>
+                                    <p class="text-sm text-gray-600">Code & Projects</p>
+                                </div>
+                                <span v-if="!userProfile.authenticated" class="ml-auto text-xs text-gray-400">🔒</span>
+                            </button>
+
+                            <button @click="requireAuthForTab('education')"
+                                    :class="!userProfile.authenticated ? 'opacity-50 cursor-not-allowed' : ''"
+                                    class="flex items-center p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">📚</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Education</h3>
+                                    <p class="text-sm text-gray-600">Learn & Create</p>
+                                </div>
+                                <span v-if="!userProfile.authenticated" class="ml-auto text-xs text-gray-400">🔒</span>
+                            </button>
+
+                            <button @click="activeTab = 'workforcedisruption'" class="flex items-center p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">🔄</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Workforce Disruption</h3>
+                                    <p class="text-sm text-gray-600">Future of Work</p>
+                                </div>
+                            </button>
+
+                            <button @click="activeTab = 'membership'" class="flex items-center p-4 bg-white rounded-lg border border-purple-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">💎</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Coming Soon</h3>
+                                    <p class="text-sm text-gray-600">Membership Plans</p>
+                                </div>
+                            </button>
+
+                            <button @click="activeTab = 'mission'" class="flex items-center p-4 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg border border-indigo-200 hover:shadow-md transition-all group">
+                                <span class="text-2xl mr-3 group-hover:scale-110 transition-transform">⭐</span>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-gray-900">Our Mission</h3>
+                                    <p class="text-sm text-gray-600">Learn More</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 text-white mb-8">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">⚡</span>
+                            <h2 class="text-2xl font-bold">Featured: AI Skill Revolution</h2>
+                        </div>
+                        <p class="text-lg mb-4">
+                            The AI revolution is not about replacing humans—it's about amplifying human potential.
+                            Discover how to leverage AI as your collaborative partner in innovation and creativity.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">#AISkills</span>
+                            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">#Innovation</span>
+                            <span class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">#FutureOfWork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="activeTab === 'press'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-8 text-center">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">📰 Quanimm AI Newsletter</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Stay updated with the latest AI developments, industry insights, and exclusive content from the GoldRush platform.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 text-gray-900 mb-8 shadow-lg border border-gray-200">
+                    <div class="text-center mb-6">
+                        <div class="text-sm text-green-600 font-semibold mb-2">PRESS RELEASE</div>
+                        <div class="flex items-center justify-center gap-4 mb-4">
+                            <div class="w-16 h-16 flex items-center justify-center bg-green-100 rounded-xl p-2">
+                                <span class="text-4xl">🎓</span>
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold mb-2 text-gray-900">Quanimm AI Announces New Teacher Assistant Features Available Through Plan Subscriptions</h2>
+                                <div class="text-sm text-gray-600 mb-2">Release Date: January 26, 2025 at 3:41 PM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="max-w-4xl mx-auto">
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed text-center">
+                            Quanimm AI today announced the release of new Teacher Assistant features, now available through flexible subscription plans designed to meet the needs of individual educators, schools, and districts.
+                        </p>
+                        <div class="text-center">
+                            <p class="text-base text-gray-700">
+                                For inquiries, contact: <a href="mailto:sales@quanimm.ai" class="underline text-green-600 hover:text-green-700">sales@quanimm.ai</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="activeTab === 'chat'" class="w-full flex-1 flex flex-col">
+                <div class="w-full flex flex-col min-w-0 flex-1 min-h-0 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden" style="max-height: calc(100vh - 200px);">
+                    <div class="border-b border-gray-200 px-6 py-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="text-2xl mr-3">🤖</div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">AI Assistant</h3>
+                                    <p class="text-sm text-gray-600">Chat with AI to perform all GoldRush functions</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div :class="isConnected ? 'bg-green-500' : 'bg-yellow-400'" class="w-2 h-2 rounded-full"></div>
+                                <span class="text-sm text-gray-600">Demo Mode</span>
+                                <button @click="clearChat" class="text-gray-400 hover:text-gray-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 flex flex-col min-h-0 overflow-hidden">
+                        <div ref="chatMessagesContainer" class="flex-1 overflow-y-auto px-6 py-4 space-y-4 min-h-0">
+                            <div v-if="chatMessages.length === 0" class="text-center py-12">
+                                <div class="text-gray-400 text-4xl mb-4">💬</div>
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Start a conversation</h3>
+                                <p class="text-gray-600">Ask me to create projects, generate code, or help with development tasks</p>
+                            </div>
+
+                            <div v-for="(message, index) in chatMessages" :key="index"
+                                 :class="message.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
+                                <div :class="message.role === 'user' ? 'bg-white0 text-white' : 'bg-gray-100 text-gray-900'"
+                                     class="max-w-xs lg:max-w-md px-4 py-2 rounded-lg">
+                                    <div class="whitespace-pre-wrap">{{ message.content }}</div>
+                                    <div :class="message.role === 'user' ? 'text-blue-100' : 'text-gray-500'"
+                                         class="text-xs mt-1">{{ message.timestamp }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-200 px-6 py-4 bg-white w-full flex-shrink-0">
+                            <form @submit.prevent="sendChatMessage" class="w-full flex space-x-4">
+                                <input v-model="chatInput"
+                                       type="text" placeholder="Ask me anything..."
+                                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <button type="submit"
+                                        :disabled="!chatInput.trim()"
+                                        class="flex-shrink-0 px-6 py-2 bg-white0 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    Send
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-gray-100 border-t border-gray-200 py-3 px-6">
+            <div class="flex items-center justify-center text-sm text-gray-600">
+                <span>© 2025 Quanimm AI - GoldRush AI Platform™. All Rights Reserved.</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    activeTab: 'press',
+                    sidebarOpen: false,
+                    projects: [],
+                    tools: {},
+                    selectedTool: null,
+                    showCreateModal: false,
+                    newProject: {
+                        name: '',
+                        description: '',
+                        type: 'python',
+                        template: 'basic'
+                    },
+                    selectedProject: null,
+                    projectFiles: [],
+                    showFileModal: false,
+                    showPreviewModal: false,
+                    previewUrl: '',
+                    chatMessages: [],
+                    chatInput: '',
+                    isConnected: false,
+                    ws: null,
+                    isTyping: false,
+                    userProfile: {
+                        authenticated: false,
+                        username: '',
+                        name: '',
+                        avatar_url: '',
+                        github_id: null,
+                        is_demo: false
+                    },
+                    sessionToken: null
+                };
+            },
+            async mounted() {
+                await this.checkAuthStatus();
+                this.addWelcomeMessage();
+            },
+            methods: {
+                async checkAuthStatus() {
+                    try {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const sessionToken = urlParams.get('session');
+                        if (sessionToken) {
+                            this.sessionToken = sessionToken;
+                            const response = await fetch(`/api/user/profile?session=${sessionToken}`);
+                            const data = await response.json();
+                            if (data.authenticated) {
+                                this.userProfile = data;
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error checking auth status:', error);
+                    }
+                },
+                async githubLogin() {
+                    window.location.href = '/auth/github';
+                },
+                async signOut() {
+                    this.sessionToken = null;
+                    this.userProfile = {
+                        authenticated: false,
+                        username: '',
+                        name: '',
+                        avatar_url: '',
+                        github_id: null,
+                        is_demo: false
+                    };
+                },
+                addWelcomeMessage() {
+                    this.chatMessages.push({
+                        role: 'assistant',
+                        content: "Welcome to GoldRush AI. Continue chatting to explore AI insights, workforce trends, and platform features.",
+                        timestamp: new Date().toLocaleTimeString()
+                    });
+                },
+                async sendChatMessage() {
+                    if (!this.chatInput.trim()) return;
+                    this.chatMessages.push({
+                        role: 'user',
+                        content: this.chatInput,
+                        timestamp: new Date().toLocaleTimeString()
+                    });
+                    const prompt = this.chatInput;
+                    this.chatInput = '';
+                    this.isTyping = true;
+                    setTimeout(() => {
+                        this.isTyping = false;
+                        this.chatMessages.push({
+                            role: 'assistant',
+                            content: `You said: "${prompt}". This is the demo AI response in deployment-ready mode.`,
+                            timestamp: new Date().toLocaleTimeString()
+                        });
+                    }, 900);
+                },
+                clearChat() {
+                    this.chatMessages = [];
+                    this.addWelcomeMessage();
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

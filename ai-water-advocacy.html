@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI + Water Advocacy | Tour de Buzz</title>
+    <style>
+        :root {
+            --ink: #e8fbff;
+            --muted: #c0eff7;
+            --card-bg: rgba(12, 44, 56, 0.68);
+            --card-border: rgba(146, 224, 255, 0.35);
+            --water: #57c7ff;
+            --earth: #5fb76e;
+            --deep: #0d2c3b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 12% 16%, rgba(87, 199, 255, 0.25), transparent 35%),
+                radial-gradient(circle at 84% 78%, rgba(95, 183, 110, 0.23), transparent 38%),
+                linear-gradient(135deg, #081f2a 0%, #0f3746 45%, #205034 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 920px;
+            border-radius: 18px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 16px 40px rgba(6, 20, 30, 0.45);
+            padding: 34px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 6px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--water), var(--earth), var(--water));
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: 2rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #b7f0ff, #c8ffd2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .date {
+            margin: 0 0 16px;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0 0 12px;
+            line-height: 1.6;
+        }
+
+        .note {
+            color: var(--muted);
+        }
+
+        .preview-note {
+            color: #d9fbff;
+            font-weight: 700;
+        }
+
+        h2 {
+            margin: 24px 0 10px;
+            color: #c8ffd2;
+            font-size: 1.15rem;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--muted);
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--water), var(--earth));
+            box-shadow: 0 0 0 2px rgba(184, 244, 255, 0.15);
+        }
+
+        strong {
+            color: #ffffff;
+        }
+
+        .callout {
+            margin-top: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(146, 224, 255, 0.3);
+            background: rgba(10, 33, 43, 0.6);
+            padding: 14px 16px;
+            color: #d9fbff;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 999px;
+            border: 1px solid rgba(215, 244, 255, 0.35);
+            padding: 10px 18px;
+            background: linear-gradient(45deg, #1f8ab8, #3b9f57);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(6, 28, 38, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>AI + Water Advocacy Shift</h1>
+        <p class="date">Posted: Feb 17, 2026 05:00 CST</p>
+        <p>
+            This initiative introduces a bold artist-inspired shift in how we think
+            about AI innovation and environmental responsibility.
+        </p>
+        <p class="note">
+            We are building toward lower-impact AI futures while protecting the communities
+            and ecosystems that make creative culture possible.
+        </p>
+        <p class="preview-note">
+            This page shares high-level vision and intent.
+        </p>
+
+        <h2>Vision Snapshot</h2>
+        <ul>
+            <li><strong>Climate-Conscious Creativity:</strong> Keep AI progress aligned with environmental care.</li>
+            <li><strong>Responsible Scale:</strong> Grow innovation without sacrificing long-term stewardship.</li>
+            <li><strong>Transparent Intent:</strong> Keep community trust and accountability at the center.</li>
+        </ul>
+
+        <h2>Public Outlook</h2>
+        <ul>
+            <li><strong>Artist-Led Awareness:</strong> Culture-forward storytelling that makes water advocacy visible and urgent.</li>
+            <li><strong>Community Momentum:</strong> Fans and partners helping shape a better innovation standard.</li>
+            <li><strong>Forward Motion:</strong> A staged vision for responsible growth and long-term impact.</li>
+        </ul>
+
+        <p class="callout">
+            We are moving with purpose: high-impact innovation, lower ecological strain,
+            and a new level of excitement around what responsible AI can become.
+        </p>
+
+        <a class="back-link" href="index.html">Back to Newsletter</a>
+    </main>
+</body>
+</html>
